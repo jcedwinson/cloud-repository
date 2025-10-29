@@ -25,10 +25,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_filters',
+    'corsheaders', 
     'Movie',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -134,3 +136,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 GS_BUCKET_NAME = os.getenv("GS_BUCKET_NAME", "cloud-apps-bucket")
 
+# Allow all origins for testing (you can restrict later)
+CORS_ALLOW_ALL_ORIGINS = True
+
+# (Optional) For Cloud Run debugging
+CORS_ALLOW_CREDENTIALS = True
