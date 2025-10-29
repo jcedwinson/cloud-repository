@@ -32,3 +32,6 @@ images:
 
 options:
   logging: GCS_ONLY
+  logBucket: 'gs://my-second-project-logs/'
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
+timeout: 1200s
