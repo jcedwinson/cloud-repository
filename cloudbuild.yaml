@@ -30,8 +30,11 @@ steps:
 images:
   - 'asia-southeast1-docker.pkg.dev/my-second-project-476520/cloud-repo-1/drf-app:$SHORT_SHA'
 
+
+logBucket: 'gs://my-second-project-logs/'
+
 options:
   logging: GCS_ONLY
-  logBucket: 'gs://my-second-project-logs/'
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
+
 timeout: 1200s
