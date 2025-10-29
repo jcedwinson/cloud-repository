@@ -1,0 +1,23 @@
+{
+  "displayName": "DRF App - High Error Rate Alert",
+  "conditions": [
+    {
+      "displayName": "High 5xx Error Rate",
+      "conditionThreshold": {
+        "filter": "metric.type=\"run.googleapis.com/request_count\" metric.label.response_code_class=\"5xx\" resource.type=\"cloud_run_revision\" resource.label.\"service_name\"=\"drf-app\"",
+        "comparison": "COMPARISON_GT",
+        "thresholdValue": 10,
+        "duration": "300s",
+        "aggregations": [
+          {
+            "alignmentPeriod": "60s",
+            "perSeriesAligner": "ALIGN_RATE"
+          }
+        ]
+      }
+    }
+  ],
+  "notificationChannels": [],
+  "combiner": "OR",
+  "enabled": true
+}

@@ -1,0 +1,67 @@
+swagger: "2.0"
+info:
+  title: "DRF Movies API"
+  description: "OpenAPI spec for Django REST Framework Movies API deployed on Cloud Run"
+  version: "1.0.0"
+
+schemes:
+  - https
+
+produces:
+  - application/json
+
+x-google-backend:
+  address: https://drf-app-829853977033.asia-southeast1.run.app
+  protocol: h2
+
+paths:
+  /api/movies:
+    get:
+      summary: "List all movies"
+      operationId: listMovies
+      responses:
+        "200":
+          description: "A list of movies"
+    post:
+      summary: "Create a new movie"
+      operationId: createMovie
+      responses:
+        "201":
+          description: "Movie created successfully"
+
+  /api/movies/{id}:
+    get:
+      summary: "Retrieve a movie by ID"
+      operationId: getMovie
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        "200":
+          description: "Movie retrieved successfully"
+        "404":
+          description: "Movie not found"
+    put:
+      summary: "Update a movie by ID"
+      operationId: updateMovie
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        "200":
+          description: "Movie updated successfully"
+    delete:
+      summary: "Delete a movie by ID"
+      operationId: deleteMovie
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        "204":
+          description: "Movie deleted successfully"
