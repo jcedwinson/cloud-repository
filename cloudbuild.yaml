@@ -1,18 +1,20 @@
 steps:
   # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: [
-      'build', '-t',
-      'asia-southeast1-docker.pkg.dev/my-second-project-476520/cloud-repo-1/drf-app:$SHORT_SHA',
-      '.'
-    ]
+    args:
+      [
+        'build', '-t',
+        'asia-southeast1-docker.pkg.dev/my-second-project-476520/cloud-repo-1/drf-app:$SHORT_SHA',
+        '.'
+      ]
 
   # Step 2: Push the image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: [
-      'push',
-      'asia-southeast1-docker.pkg.dev/my-second-project-476520/cloud-repo-1/drf-app:$SHORT_SHA'
-    ]
+    args:
+      [
+        'push',
+        'asia-southeast1-docker.pkg.dev/my-second-project-476520/cloud-repo-1/drf-app:$SHORT_SHA'
+      ]
 
   # Step 3: Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -27,3 +29,6 @@ steps:
 
 images:
   - 'asia-southeast1-docker.pkg.dev/my-second-project-476520/cloud-repo-1/drf-app:$SHORT_SHA'
+
+options:
+  logging: GCS_ONLY
