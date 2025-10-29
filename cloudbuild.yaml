@@ -4,7 +4,7 @@ steps:
     args:
       [
         'build', '-t',
-        'asia-southeast1-docker.pkg.dev/my-second-project-476520/cloud-repo-1/drf-app:$SHORT_SHA',
+        'asia-southeast1-docker.pkg.dev/my-second-project-476520/cloud-repo-1/drf-app:latest',
         '.'
       ]
 
@@ -13,7 +13,7 @@ steps:
     args:
       [
         'push',
-        'asia-southeast1-docker.pkg.dev/my-second-project-476520/cloud-repo-1/drf-app:$SHORT_SHA'
+        'asia-southeast1-docker.pkg.dev/my-second-project-476520/cloud-repo-1/drf-app:latest'
       ]
 
   # Step 3: Deploy to Cloud Run
@@ -22,13 +22,13 @@ steps:
     args:
       [
         'run', 'deploy', 'drf-app',
-        '--image', 'asia-southeast1-docker.pkg.dev/my-second-project-476520/cloud-repo-1/drf-app:$SHORT_SHA',
+        '--image', 'asia-southeast1-docker.pkg.dev/my-second-project-476520/cloud-repo-1/drf-app:latest',
         '--region', 'asia-southeast1',
         '--allow-unauthenticated'
       ]
 
 images:
-  - 'asia-southeast1-docker.pkg.dev/my-second-project-476520/cloud-repo-1/drf-app:$SHORT_SHA'
+  - 'asia-southeast1-docker.pkg.dev/my-second-project-476520/cloud-repo-1/drf-app:latest'
 
 options:
   logging: GCS_ONLY
